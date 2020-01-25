@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SearchableSpinner">
+        <attr name="cancelButtonColor" format="color" />
+        <attr name="cancelButtontext" format="string" />
+        <attr name="dialogTitle" format="string" />
+        <attr name="onlyLightTheme" format="boolean" />
+        <attr name="android:entries" />
+    </declare-styleable>
+</resources>

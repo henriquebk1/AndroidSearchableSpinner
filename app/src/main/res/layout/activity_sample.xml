@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".SampleActivity"
+    android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="XML entries"/>
+        <tech.hibk.searchablespinnerlibrary.SearchableSpinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:entries="@array/spinner_options"
+            app:dialogTitle="Sample"
+            app:cancelButtonColor="@color/colorPrimary"
+            app:cancelButtontext="CLOSE"
+            app:onlyLightTheme="false"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Spinner 2"/>
+
+        <tech.hibk.searchablespinnerlibrary.SearchableSpinner
+            android:id="@+id/spinner2"
+            style="@android:style/Widget.Holo.Spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/showDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="SHOW DIALOG"/>
+
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/showLightDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="SHOW LIGHT DIALOG"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/lightMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="SET LIGHT MODE"/>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/darkMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="SET DARK MODE"/>
+
+
+</LinearLayout>

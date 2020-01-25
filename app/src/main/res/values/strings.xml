@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">SearchableSpinner</string>
+
+    <string-array name="spinner_options">
+        <item>Test1</item>
+        <item>Test2</item>
+        <item>Test3</item>
+        <item>Test4</item>
+        <item>Test5</item>
+        <item>Test6</item>
+        <item>Test7</item>
+        <item>Test8</item>
+        <item>Test9</item>
+        <item>Test10</item>
+        <item>Test11</item>
+        <item>Test12</item>
+        <item>Test13</item>
+        <item>Test14</item>
+        <item>Test15</item>
+        <item>Test16</item>
+        <item>Test17</item>
+        <item>Test18</item>
+        <item>Test19</item>
+        <item>Test20</item>
+        <item>Test21</item>
+        <item>Test22</item>
+        <item>Test23</item>
+        <item>Test24</item>
+        <item>Test25</item>
+        <item>Test26</item>
+        <item>Test27</item>
+        <item>Test28</item>
+        <item>Test29</item>
+        <item>Test30</item>
+        <item>Test31</item>
+        <item>Test32</item>
+        <item>Test33</item>
+        <item>Test34</item>
+        <item>Test35</item>
+        <item>Test36</item>
+        <item>Test37</item>
+        <item>Test38</item>
+        <item>Test39</item>
+        <item>Test40</item>
+    </string-array>
+</resources>
