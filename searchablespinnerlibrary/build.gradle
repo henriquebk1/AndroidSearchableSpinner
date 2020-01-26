@@ -4,9 +4,33 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: "com.jfrog.bintray"
 
-// This is the library version used when deploying the artifact
-version = "1.0.0"
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
 
+ext {
+
+    bintrayRepo = "SearchableSpinner"
+    bintrayName = "tech.hibk.searchablespinnerlibrary"
+
+    publishedGroupId = 'tech.hibk.searchablespinnerlibrary'
+    libraryName = 'searchablespinnerlibrary'
+    artifact = 'searchablespinnerlibrary'
+
+    libraryDescription = 'An Android Searchable Spinner Library'
+
+    siteUrl = 'https://github.com/henriquebk1/AndroidSearchableSpinner'
+    gitUrl = 'https://github.com/henriquebk1/AndroidSearchableSpinner.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'henriquebk1'
+    developerName = 'Henrique Becker'
+    developerEmail = 'henriquebk1@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
 
 android {
     compileSdkVersion 29
@@ -39,4 +63,9 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.0-alpha04'
 }
 
-apply from: 'publish.gradle'
+//Add these lines to publish library to bintray. This is the readymade scripts made by github user nuuneoi to make uploading to bintray easy.
+//Place it at the end of the file
+if (project.rootProject.file('local.properties').exists()) {
+    apply from: 'https://raw.githubusercontent.com/wajahatkarim3/JCenter-Gradle-Scripts/master/install.gradle'
+    apply from: 'https://raw.githubusercontent.com/wajahatkarim3/JCenter-Gradle-Scripts/master/bintray.gradle'
+}

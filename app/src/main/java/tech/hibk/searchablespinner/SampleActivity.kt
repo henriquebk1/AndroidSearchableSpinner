@@ -1,5 +1,7 @@
 package tech.hibk.searchablespinner
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -81,6 +83,10 @@ class SampleActivity : AppCompatActivity() {
         lightMode.setOnClickListener {
 
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+
+        moreInfo.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/henriquebk1/AndroidSearchableSpinner")))
         }
     }
 }
