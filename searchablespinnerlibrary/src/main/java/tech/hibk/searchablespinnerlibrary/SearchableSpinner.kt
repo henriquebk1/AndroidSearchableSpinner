@@ -3,7 +3,6 @@ package tech.hibk.searchablespinnerlibrary
 import android.content.Context
 import android.os.Handler
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
@@ -11,19 +10,30 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.core.content.res.getColorOrThrow
 import androidx.core.content.res.getTextArrayOrThrow
+import androidx.core.content.res.getTextOrThrow
 
 class SearchableSpinner : Spinner, OnTouchListener {
-    var items: List<SearchableItem> = listOf()
+    var items: List<SearchableItem> = mutableListOf()
         set(value) {
             field = value
-            setSelection(0)
-            adapter = ArrayAdapter<String>(context,
-                android.R.layout.simple_spinner_item, items.map { it.title })
+            adapter =
+                if (nothingSelectedText.isNullOrBlank())
+                    ArrayAdapter<String>(context,
+                        android.R.layout.simple_spinner_item, items.map { it.title })
+                else {
+                    val i = arrayListOf(nothingSelectedText)
+                    i.addAll(items.map { it.title })
+                    ArrayAdapter<String>(
+                        context,
+                        android.R.layout.simple_spinner_item, i
+                    )
+                }
         }
     var dialogTitle = ""
     var dialogCancelButtonText = ""
     var dialogCancelButtonColor: Int? = null
     var dialogOnlyLightTheme: Boolean = false
+    var nothingSelectedText: String? = null
 
     constructor(context: Context) : super(context) {
         init(null)
@@ -46,10 +56,6 @@ class SearchableSpinner : Spinner, OnTouchListener {
 
     private fun init(att: AttributeSet?) {
         att?.let { attrs ->
-            for (i in 0 until attrs.attributeCount) {
-                Log.e("TE", attrs.getAttributeName(i))
-            }
-
             val a = context.obtainStyledAttributes(attrs, R.styleable.SearchableSpinner)
             for (i in 0 until a.indexCount) {
                 when (val attr = a.getIndex(i)) {
@@ -79,7 +85,14 @@ class SearchableSpinner : Spinner, OnTouchListener {
                         } catch (e: Exception) {
                         }
                     }
+                    R.styleable.SearchableSpinner_nothingSelectedText -> {
+                        try {
+                            nothingSelectedText = a.getTextOrThrow(attr).toString()
+                            items = items
+                        } catch (e: Exception) {
 
+                        }
+                    }
                 }
             }
             a.recycle()
@@ -113,10 +126,16 @@ class SearchableSpinner : Spinner, OnTouchListener {
 
 
     override fun getSelectedItem(): SearchableItem? {
+        if (items.lastIndex < this.selectedItemPosition || items.lastIndex < 0) {
+            return null
+        }
         return items[this.selectedItemPosition]
     }
 
     override fun getSelectedItemId(): Long {
+        if (items.lastIndex < this.selectedItemPosition || items.lastIndex < 0) {
+            return -1L
+        }
         return items[this.selectedItemPosition].id
     }
 

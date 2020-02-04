@@ -4,6 +4,7 @@
         <attr name="cancelButtonColor" format="color" />
         <attr name="cancelButtontext" format="string" />
         <attr name="dialogTitle" format="string" />
+        <attr name="nothingSelectedText" format="string" />
         <attr name="onlyLightTheme" format="boolean" />
         <attr name="android:entries" />
     </declare-styleable>

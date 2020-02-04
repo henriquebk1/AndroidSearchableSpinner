@@ -12,7 +12,7 @@ It also includes a Searchable Dialog.
 Add the dependency:
 
     dependencies {
-	        implementation 'tech.hibk.searchablespinnerlibrary:searchablespinnerlibrary:1.0.0'
+	        implementation 'tech.hibk.searchablespinnerlibrary:searchablespinnerlibrary:1.0.1'
 	}
 
 
@@ -28,7 +28,8 @@ Using inside xml layout:
             app:dialogTitle="Sample"
             app:cancelButtonColor="@color/colorPrimary"
             app:cancelButtontext="CLOSE"
-            app:onlyLightTheme="false"/>
+            app:onlyLightTheme="false"
+            app:nothingSelectedText="TEST"/>
 
 
 *app parameters are optional

@@ -7,7 +7,6 @@
     tools:context=".SampleActivity"
     android:orientation="vertical">
 
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,7 +20,8 @@
             app:dialogTitle="Sample"
             app:cancelButtonColor="@color/colorPrimary"
             app:cancelButtontext="CLOSE"
-            app:onlyLightTheme="false"/>
+            app:onlyLightTheme="false"
+            app:nothingSelectedText="TEST"/>
 
 
         <TextView
