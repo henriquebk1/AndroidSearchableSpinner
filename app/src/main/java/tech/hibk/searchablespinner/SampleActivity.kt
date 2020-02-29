@@ -35,10 +35,13 @@ class SampleActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                Toast.makeText(this@SampleActivity, spinner.items[position].title, Toast.LENGTH_SHORT).show()
+                spinner.selectedItem?.title?.let { title ->
+                    Toast.makeText(this@SampleActivity, title, Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
+        spinner2.nothingSelectedText = "nothing selected"
         spinner2.items = items
         spinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -51,9 +54,12 @@ class SampleActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                Toast.makeText(this@SampleActivity, items[position].title, Toast.LENGTH_SHORT).show()
+                spinner2.selectedItem?.title?.let { title ->
+                    Toast.makeText(this@SampleActivity, title, Toast.LENGTH_SHORT).show()
+                }
             }
         }
+
 
         showDialog.setOnClickListener {
             SearchableDialog(this,

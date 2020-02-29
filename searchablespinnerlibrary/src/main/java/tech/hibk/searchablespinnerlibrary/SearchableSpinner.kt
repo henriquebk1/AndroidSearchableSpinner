@@ -126,14 +126,16 @@ class SearchableSpinner : Spinner, OnTouchListener {
 
 
     override fun getSelectedItem(): SearchableItem? {
-        if (items.lastIndex < this.selectedItemPosition || items.lastIndex < 0) {
+        if (items.lastIndex < this.selectedItemPosition || items.lastIndex < 0 ||
+            adapter.getItem(0) == nothingSelectedText) {
             return null
         }
         return items[this.selectedItemPosition]
     }
 
     override fun getSelectedItemId(): Long {
-        if (items.lastIndex < this.selectedItemPosition || items.lastIndex < 0) {
+        if (items.lastIndex < this.selectedItemPosition || items.lastIndex < 0 ||
+            adapter.getItem(0) == nothingSelectedText) {
             return -1L
         }
         return items[this.selectedItemPosition].id
