@@ -42,7 +42,6 @@ class SampleActivity : AppCompatActivity() {
         }
 
         spinner2.nothingSelectedText = "nothing selected"
-        spinner2.items = items
         spinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
@@ -59,7 +58,9 @@ class SampleActivity : AppCompatActivity() {
                 }
             }
         }
+        spinner2.items = items
 
+        spinner2.setSelection(2)
 
         showDialog.setOnClickListener {
             SearchableDialog(this,
