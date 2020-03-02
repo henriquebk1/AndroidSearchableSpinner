@@ -2,11 +2,11 @@ package tech.hibk.searchablespinner
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_sample.*

@@ -7,17 +7,19 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
 import android.widget.ArrayAdapter
-import android.widget.Spinner
 import androidx.core.content.res.getColorOrThrow
 import androidx.core.content.res.getTextArrayOrThrow
 import androidx.core.content.res.getTextOrThrow
 
-class SearchableSpinner : Spinner, OnTouchListener {
+class SearchableSpinner : androidx.appcompat.widget.AppCompatSpinner, OnTouchListener {
     var items: List<SearchableItem> = mutableListOf()
         set(value) {
+            val selectedIndex = this.selectedItem?.let {
+                value.indexOfFirst { v -> v.title == it.title }
+            }?:-1
             field = value
             adapter =
-                if (nothingSelectedText.isNullOrBlank())
+                if (nothingSelectedText.isNullOrBlank() || selectedIndex >= 0)
                     ArrayAdapter<String>(context,
                         android.R.layout.simple_spinner_item, items.map { it.title })
                 else {
@@ -28,6 +30,9 @@ class SearchableSpinner : Spinner, OnTouchListener {
                         android.R.layout.simple_spinner_item, i
                     )
                 }
+            if(selectedIndex >= 0){
+                this.setSelection(selectedIndex)
+            }
         }
     var dialogTitle = ""
     var dialogCancelButtonText = ""
@@ -127,7 +132,7 @@ class SearchableSpinner : Spinner, OnTouchListener {
 
     override fun getSelectedItem(): SearchableItem? {
         if (items.lastIndex < this.selectedItemPosition || items.lastIndex < 0 ||
-            adapter.getItem(0) == nothingSelectedText) {
+            adapter.getItem(this.selectedItemPosition) == nothingSelectedText) {
             return null
         }
         return items[this.selectedItemPosition]
@@ -135,10 +140,26 @@ class SearchableSpinner : Spinner, OnTouchListener {
 
     override fun getSelectedItemId(): Long {
         if (items.lastIndex < this.selectedItemPosition || items.lastIndex < 0 ||
-            adapter.getItem(0) == nothingSelectedText) {
+            adapter.getItem(this.selectedItemPosition) == nothingSelectedText) {
             return -1L
         }
         return items[this.selectedItemPosition].id
+    }
+
+    override fun setSelection(position: Int) {
+        if(position >= 0 && nothingSelectedText == adapter.getItem(0)){
+            this.adapter = ArrayAdapter<String>(context,
+                android.R.layout.simple_spinner_item, items.map { it.title })
+        }
+        super.setSelection(position)
+    }
+
+    override fun setSelection(position: Int, animate: Boolean) {
+        if(position >= 0 && nothingSelectedText == adapter.getItem(0)){
+            this.adapter = ArrayAdapter<String>(context,
+                android.R.layout.simple_spinner_item, items.map { it.title })
+        }
+        super.setSelection(position, animate)
     }
 
     companion object {

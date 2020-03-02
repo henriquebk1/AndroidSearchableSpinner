@@ -19,7 +19,7 @@ ext {
     siteUrl = 'https://github.com/henriquebk1/AndroidSearchableSpinner'
     gitUrl = 'https://github.com/henriquebk1/AndroidSearchableSpinner.git'
 
-    libraryVersion = '1.0.2'
+    libraryVersion = '1.0.4'
 
     developerId = 'henriquebk1'
     developerName = 'Henrique Becker'
@@ -36,7 +36,7 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 3
+        versionCode 5
         versionName version
         vectorDrawables.useSupportLibrary = true
 
