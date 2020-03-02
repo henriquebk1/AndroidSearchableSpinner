@@ -131,16 +131,16 @@ class SearchableSpinner : androidx.appcompat.widget.AppCompatSpinner, OnTouchLis
 
 
     override fun getSelectedItem(): SearchableItem? {
-        if (items.lastIndex < this.selectedItemPosition || items.lastIndex < 0 ||
-            adapter.getItem(this.selectedItemPosition) == nothingSelectedText) {
+        if (this.selectedItemPosition < 0 || items.lastIndex < this.selectedItemPosition || items.lastIndex < 0 ||
+            (!adapter.isEmpty && adapter.getItem(this.selectedItemPosition) == nothingSelectedText)) {
             return null
         }
         return items[this.selectedItemPosition]
     }
 
     override fun getSelectedItemId(): Long {
-        if (items.lastIndex < this.selectedItemPosition || items.lastIndex < 0 ||
-            adapter.getItem(this.selectedItemPosition) == nothingSelectedText) {
+        if (this.selectedItemPosition < 0 || items.lastIndex < this.selectedItemPosition || items.lastIndex < 0 ||
+            (!adapter.isEmpty && adapter.getItem(this.selectedItemPosition) == nothingSelectedText)) {
             return -1L
         }
         return items[this.selectedItemPosition].id
@@ -150,6 +150,13 @@ class SearchableSpinner : androidx.appcompat.widget.AppCompatSpinner, OnTouchLis
         if(position >= 0 && nothingSelectedText == adapter.getItem(0)){
             this.adapter = ArrayAdapter<String>(context,
                 android.R.layout.simple_spinner_item, items.map { it.title })
+        }else if(position < 0 && nothingSelectedText?.isNotBlank() == true){
+            val i = arrayListOf(nothingSelectedText)
+            i.addAll(items.map { it.title })
+            this.adapter = ArrayAdapter<String>(
+                context,
+                android.R.layout.simple_spinner_item, i
+            )
         }
         super.setSelection(position)
     }
@@ -158,6 +165,13 @@ class SearchableSpinner : androidx.appcompat.widget.AppCompatSpinner, OnTouchLis
         if(position >= 0 && nothingSelectedText == adapter.getItem(0)){
             this.adapter = ArrayAdapter<String>(context,
                 android.R.layout.simple_spinner_item, items.map { it.title })
+        }else if(position < 0 && nothingSelectedText?.isNotBlank() == true){
+            val i = arrayListOf(nothingSelectedText)
+            i.addAll(items.map { it.title })
+            this.adapter = ArrayAdapter<String>(
+                context,
+                android.R.layout.simple_spinner_item, i
+            )
         }
         super.setSelection(position, animate)
     }
